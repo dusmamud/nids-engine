@@ -1,0 +1,55 @@
+# Build Artifacts
+build/
+bin/
+lib/
+out/
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+
+# CMake Artifacts
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Testing/
+Makefile
+!/Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+*.cmake
+
+# IDE & Editor Cache
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+.idea/
+*.sublime-project
+*.sublime-workspace
+.vs/
+*.swp
+*.swo
+*~
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment & Secrets
+.env
+.env.*
+!.env.example
+
+# Capture & Test Dumps
+*.pcap
+*.pcapng
+alerts.json
+*.log

@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    name: ${{ matrix.os }} - ${{ matrix.compiler }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-22.04
+            compiler: gcc
+            cc: gcc-12
+            cxx: g++-12
+          - os: ubuntu-22.04
+            compiler: clang
+            cc: clang-15
+            cxx: clang++-15
+          - os: windows-2022
+            compiler: msvc
+            cc: cl
+            cxx: cl
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install System Dependencies (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libpcap-dev ninja-build
+
+      - name: Configure CMake
+        run: >
+          cmake -B build -S .
+          -DCMAKE_BUILD_TYPE=Release
+          -DBUILD_TESTS=ON
+          -DENABLE_WERROR=ON
+        env:
+          CC: ${{ matrix.cc }}
+          CXX: ${{ matrix.cxx }}
+
+      - name: Build All Targets
+        run: cmake --build build --config Release --parallel
+
+      - name: Execute Test Suite
+        run: ctest --test-dir build -C Release --output-on-failure

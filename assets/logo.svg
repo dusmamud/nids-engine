@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070b14"/>
+      <stop offset="50%" stop-color="#0a1020"/>
+      <stop offset="100%" stop-color="#04070d"/>
+    </linearGradient>
+
+    <!-- Shield Primary Neon Gradient -->
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f2fe"/>
+      <stop offset="50%" stop-color="#4facfe"/>
+      <stop offset="100%" stop-color="#0052d4"/>
+    </linearGradient>
+
+    <!-- Core Glow Gradient -->
+    <linearGradient id="pulseGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00ffcc"/>
+      <stop offset="100%" stop-color="#0088ff"/>
+    </linearGradient>
+
+    <!-- Cyber Grid Pattern -->
+    <pattern id="cyberGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(0, 242, 254, 0.05)" stroke-width="1"/>
+    </pattern>
+
+    <!-- Neon Glow Filter -->
+    <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Deep Shield Shadow -->
+    <filter id="shieldShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="#00f2fe" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <style>
+    .title-text {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-weight: 900;
+      letter-spacing: 12px;
+      fill: #ffffff;
+    }
+    .subtitle-text {
+      font-family: "SF Mono", "Fira Code", "Courier New", monospace;
+      font-weight: 700;
+      letter-spacing: 6px;
+      fill: #00f2fe;
+    }
+    .accent-text {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-weight: 600;
+      letter-spacing: 3px;
+      fill: #94a3b8;
+    }
+  </style>
+
+  <!-- Background Base -->
+  <rect width="800" height="800" rx="48" fill="url(#bgGrad)"/>
+  <rect width="800" height="800" rx="48" fill="url(#cyberGrid)"/>
+
+  <!-- Subtle Radial Radar Rings -->
+  <circle cx="400" cy="330" r="240" fill="none" stroke="rgba(0, 242, 254, 0.08)" stroke-width="1.5" stroke-dasharray="6 6"/>
+  <circle cx="400" cy="330" r="180" fill="none" stroke="rgba(79, 172, 254, 0.12)" stroke-width="1.5"/>
+  <circle cx="400" cy="330" r="120" fill="none" stroke="rgba(0, 255, 204, 0.08)" stroke-width="1" stroke-dasharray="4 4"/>
+
+  <!-- Radar Sweep Crosshairs -->
+  <line x1="400" y1="90" x2="400" y2="570" stroke="rgba(0, 242, 254, 0.08)" stroke-width="1.5"/>
+  <line x1="160" y1="330" x2="640" y2="330" stroke="rgba(0, 242, 254, 0.08)" stroke-width="1.5"/>
+
+  <!-- Central Shield Container -->
+  <g filter="url(#shieldShadow)">
+    <!-- Outer Shield Rim -->
+    <path d="M 400 130 
+             L 540 180 
+             C 540 330 470 450 400 495 
+             C 330 450 260 330 260 180 
+             Z" 
+          fill="#0c1427" 
+          stroke="url(#shieldGrad)" 
+          stroke-width="5" 
+          stroke-linejoin="round"/>
+
+    <!-- Inner Shield Inset -->
+    <path d="M 400 155 
+             L 515 195 
+             C 515 320 455 425 400 465 
+             C 345 425 285 320 285 195 
+             Z" 
+          fill="rgba(10, 20, 42, 0.6)" 
+          stroke="rgba(0, 242, 254, 0.3)" 
+          stroke-width="2"/>
+
+    <!-- Core Detection Diamond / Neural Center -->
+    <polygon points="400,210 450,290 400,370 350,290" 
+             fill="url(#pulseGrad)" 
+             opacity="0.15" 
+             stroke="url(#shieldGrad)" 
+             stroke-width="2"/>
+
+    <!-- Dynamic Flow Pulse Node (Center Eye) -->
+    <circle cx="400" cy="290" r="14" fill="#00ffcc" filter="url(#neonGlow)"/>
+    <circle cx="400" cy="290" r="6" fill="#ffffff"/>
+
+    <!-- Circuit Interconnect Tracks -->
+    <line x1="400" y1="210" x2="400" y2="155" stroke="#00f2fe" stroke-width="2" stroke-dasharray="3 3"/>
+    <line x1="450" y1="290" x2="515" y2="290" stroke="#00f2fe" stroke-width="2" stroke-linecap="round"/>
+    <line x1="350" y1="290" x2="285" y2="290" stroke="#00f2fe" stroke-width="2" stroke-linecap="round"/>
+    <line x1="400" y1="370" x2="400" y2="465" stroke="#00f2fe" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Packet Nodes On Perimeter -->
+    <circle cx="515" cy="290" r="5" fill="#00f2fe"/>
+    <circle cx="285" cy="290" r="5" fill="#00f2fe"/>
+    <circle cx="400" cy="465" r="5" fill="#00f2fe"/>
+    <circle cx="400" cy="155" r="5" fill="#00f2fe"/>
+
+    <!-- Floating Hex Sentinel Points -->
+    <polygon points="340,240 348,235 356,240 356,250 348,255 340,250" fill="none" stroke="#4facfe" stroke-width="1.5"/>
+    <polygon points="444,240 452,235 460,240 460,250 452,255 444,250" fill="none" stroke="#4facfe" stroke-width="1.5"/>
+    <polygon points="392,390 400,385 408,390 408,400 400,405 392,400" fill="none" stroke="#00ffcc" stroke-width="1.5"/>
+  </g>
+
+  <!-- Typography Brand Header -->
+  <g text-anchor="middle">
+    <!-- Main Title -->
+    <text x="406" y="580" class="title-text" font-size="44">NIDS</text>
+    <text x="406" y="630" class="subtitle-text" font-size="20">ENGINE</text>
+
+    <!-- Subtitle Spec Badge -->
+    <rect x="290" y="665" width="220" height="34" rx="17" fill="rgba(0, 242, 254, 0.08)" stroke="rgba(0, 242, 254, 0.25)" stroke-width="1.2"/>
+    <text x="400" y="688" class="accent-text" font-size="13">C++20 CORE ARCHITECTURE</text>
+  </g>
+</svg>

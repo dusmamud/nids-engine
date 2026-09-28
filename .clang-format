@@ -1,0 +1,53 @@
+---
+Language: Cpp
+BasedOnStyle: Google
+Standard: c++20
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+ColumnLimit: 100
+AccessModifierOffset: -4
+AlignAfterOpenBracket: Align
+AlignConsecutiveAssignments: None
+AlignConsecutiveDeclarations: None
+AlignEscapedNewlines: Right
+AlignOperands: Align
+AllowAllParametersOfDeclarationOnNextLine: false
+AllowShortBlocksOnASingleLine: Never
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: Inline
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+AlwaysBreakAfterReturnType: None
+AlwaysBreakTemplateDeclarations: Yes
+BinPackArguments: true
+BinPackParameters: true
+BreakBeforeBinaryOperators: None
+BreakBeforeBraces: Attach
+BreakBeforeTernaryOperators: true
+BreakConstructorInitializers: BeforeColon
+IncludeBlocks: Regroup
+IncludeCategories:
+  - Regex: '^<[a-z0-9_]+>'
+    Priority: 1
+  - Regex: '^<nids/'
+    Priority: 2
+  - Regex: '.*'
+    Priority: 3
+NamespaceIndentation: None
+PointerAlignment: Left
+ReflowComments: true
+SortIncludes: CaseSensitive
+SpaceAfterCStyleCast: false
+SpaceAfterLogicalNot: false
+SpaceAfterTemplateKeyword: false
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeParens: ControlStatements
+SpaceInEmptyParentheses: false
+SpacesBeforeTrailingComments: 2
+SpacesInAngles: false
+SpacesInCStyleCastParentheses: false
+SpacesInContainerLiterals: false
+SpacesInParentheses: false
+SpacesInSquareBrackets: false
+...
