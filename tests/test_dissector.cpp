@@ -1,4 +1,6 @@
 #include <cassert>
+#include <functional>
+#include <string>
 #include <vector>
 #include "nids/protocol/ethernet.hpp"
 #include "nids/protocol/ipv4.hpp"

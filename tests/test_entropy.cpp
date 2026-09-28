@@ -1,5 +1,7 @@
 #include <cassert>
 #include <cmath>
+#include <functional>
+#include <string>
 #include <vector>
 #include "nids/detection/entropy_detector.hpp"
 

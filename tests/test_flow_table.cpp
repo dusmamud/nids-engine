@@ -1,4 +1,6 @@
 #include <cassert>
+#include <functional>
+#include <string>
 #include <thread>
 #include <vector>
 #include "nids/flow/flow_table.hpp"
