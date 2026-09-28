@@ -1,14 +1,8 @@
-#include <cassert>
-#include <functional>
-#include <string>
 #include <vector>
+#include "test_runner.hpp"
 #include "nids/protocol/ethernet.hpp"
 #include "nids/protocol/ipv4.hpp"
 #include "nids/protocol/tcp.hpp"
-
-namespace test_runner {
-void register_test(const std::string& name, std::function<void()> func);
-}
 
 namespace {
 
@@ -22,11 +16,11 @@ void test_ethernet_dissection() {
     };
 
     auto frame = nids::protocol::EthernetDissector::dissect(raw);
-    assert(frame.has_value());
-    assert(frame->destination.to_string() == "00:11:22:33:44:55");
-    assert(frame->source.to_string() == "aa:bb:cc:dd:ee:ff");
-    assert(frame->ethertype == nids::protocol::EtherType::IPv4);
-    assert(frame->payload.size() == 4);
+    TEST_ASSERT(frame.has_value());
+    TEST_ASSERT(frame->destination.to_string() == "00:11:22:33:44:55");
+    TEST_ASSERT(frame->source.to_string() == "aa:bb:cc:dd:ee:ff");
+    TEST_ASSERT(frame->ethertype == nids::protocol::EtherType::IPv4);
+    TEST_ASSERT(frame->payload.size() == 4);
 }
 
 void test_ipv4_dissection() {
@@ -44,14 +38,14 @@ void test_ipv4_dissection() {
     };
 
     auto packet = nids::protocol::IPv4Dissector::dissect(raw);
-    assert(packet.has_value());
-    assert(packet->version == 4);
-    assert(packet->ihl_bytes == 20);
-    assert(packet->total_length == 40);
-    assert(packet->source_ip.to_string() == "192.168.1.100");
-    assert(packet->destination_ip.to_string() == "10.0.0.1");
-    assert(packet->protocol == nids::common::TransportProtocol::TCP);
-    assert(packet->payload.size() == 20);
+    TEST_ASSERT(packet.has_value());
+    TEST_ASSERT(packet->version == 4);
+    TEST_ASSERT(packet->ihl_bytes == 20);
+    TEST_ASSERT(packet->total_length == 40);
+    TEST_ASSERT(packet->source_ip.to_string() == "192.168.1.100");
+    TEST_ASSERT(packet->destination_ip.to_string() == "10.0.0.1");
+    TEST_ASSERT(packet->protocol == nids::common::TransportProtocol::TCP);
+    TEST_ASSERT(packet->payload.size() == 20);
 }
 
 void test_tcp_dissection() {
@@ -69,13 +63,13 @@ void test_tcp_dissection() {
     };
 
     auto segment = nids::protocol::TCPDissector::dissect(raw);
-    assert(segment.has_value());
-    assert(segment->source_port == 80);
-    assert(segment->destination_port == 8080);
-    assert(segment->sequence_number == 66);
-    assert(segment->flags.syn == true);
-    assert(segment->flags.ack == false);
-    assert(segment->payload.empty());
+    TEST_ASSERT(segment.has_value());
+    TEST_ASSERT(segment->source_port == 80);
+    TEST_ASSERT(segment->destination_port == 8080);
+    TEST_ASSERT(segment->sequence_number == 66);
+    TEST_ASSERT(segment->flags.syn == true);
+    TEST_ASSERT(segment->flags.ack == false);
+    TEST_ASSERT(segment->payload.empty());
 }
 
 struct RegisterDissectorTests {

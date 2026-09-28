@@ -1,13 +1,7 @@
-#include <cassert>
-#include <functional>
-#include <string>
 #include <thread>
 #include <vector>
+#include "test_runner.hpp"
 #include "nids/flow/flow_table.hpp"
-
-namespace test_runner {
-void register_test(const std::string& name, std::function<void()> func);
-}
 
 namespace {
 
@@ -29,14 +23,14 @@ void test_flow_canonical_bidirectional_mapping() {
     };
     table.record_packet(reverse_key, 128, true, true, false, false);
 
-    assert(table.total_active_flows() == 1);
+    TEST_ASSERT(table.total_active_flows() == 1);
 
     auto metrics = table.get_metrics(forward_key);
-    assert(metrics.has_value());
-    assert(metrics->packet_count == 2);
-    assert(metrics->byte_count == 192);
-    assert(metrics->syn_count == 2);
-    assert(metrics->ack_count == 1);
+    TEST_ASSERT(metrics.has_value());
+    TEST_ASSERT(metrics->packet_count == 2);
+    TEST_ASSERT(metrics->byte_count == 192);
+    TEST_ASSERT(metrics->syn_count == 2);
+    TEST_ASSERT(metrics->ack_count == 1);
 }
 
 void test_flow_concurrent_sharded_inserts() {
@@ -67,7 +61,7 @@ void test_flow_concurrent_sharded_inserts() {
         w.join();
     }
 
-    assert(table.total_active_flows() == THREADS * OPS_PER_THREAD);
+    TEST_ASSERT(table.total_active_flows() == THREADS * OPS_PER_THREAD);
 }
 
 struct RegisterFlowTests {

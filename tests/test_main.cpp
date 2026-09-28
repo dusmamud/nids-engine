@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <functional>
+#include "test_runner.hpp"
 
 namespace test_runner {
 

@@ -1,13 +1,7 @@
-#include <cassert>
 #include <cmath>
-#include <functional>
-#include <string>
 #include <vector>
+#include "test_runner.hpp"
 #include "nids/detection/entropy_detector.hpp"
-
-namespace test_runner {
-void register_test(const std::string& name, std::function<void()> func);
-}
 
 namespace {
 
@@ -15,7 +9,7 @@ void test_entropy_zero_for_constant_bytes() {
     // Repeated single byte has zero entropy (zero uncertainty)
     std::vector<uint8_t> constant_buffer(64, 'A');
     const double entropy = nids::detection::EntropyDetector::calculate_entropy(constant_buffer);
-    assert(std::abs(entropy - 0.0) < 0.001);
+    TEST_ASSERT(std::abs(entropy - 0.0) < 0.001);
 }
 
 void test_entropy_max_for_uniform_distribution() {
@@ -29,7 +23,7 @@ void test_entropy_max_for_uniform_distribution() {
     }
 
     const double entropy = nids::detection::EntropyDetector::calculate_entropy(uniform_buffer);
-    assert(std::abs(entropy - 8.0) < 0.001);
+    TEST_ASSERT(std::abs(entropy - 8.0) < 0.001);
 }
 
 void test_entropy_detector_alert_trigger() {
@@ -49,9 +43,9 @@ void test_entropy_detector_alert_trigger() {
         80
     );
 
-    assert(alert.has_value());
-    assert(alert->rule_name == "HIGH_ENTROPY_PAYLOAD_ANOMALY");
-    assert(alert->severity == nids::detection::ThreatSeverity::HIGH);
+    TEST_ASSERT(alert.has_value());
+    TEST_ASSERT(alert->rule_name == "HIGH_ENTROPY_PAYLOAD_ANOMALY");
+    TEST_ASSERT(alert->severity == nids::detection::ThreatSeverity::HIGH);
 }
 
 struct RegisterEntropyTests {

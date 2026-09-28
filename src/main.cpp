@@ -65,6 +65,10 @@ int main(int argc, char* argv[]) {
     std::cout << "[INFO] nids-engine v0.1.0 starting...\n"
               << "[INFO] Target Alert Sink: " << log_file << "\n";
 
+    if (verbose) {
+        std::cout << "[INFO] Verbose telemetry logging enabled.\n";
+    }
+
     nids::output::AlertLogger logger(log_file, true);
     nids::flow::ShardedFlowTable flow_table;
     nids::detection::PortScanDetector scan_detector(15, std::chrono::seconds(5));
