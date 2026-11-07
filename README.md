@@ -291,3 +291,4 @@ We welcome contributions! Please review [CONTRIBUTING.md](CONTRIBUTING.md) and [
 Distributed under the [MIT License](LICENSE). Copyright &copy; 2026 Dus Mamud & Contributors.
 > Tip: A port scan is flagged when one source IP hits 15 unique destination ports within 5 seconds (sliding window) — the default threshold for the Port Scan Detector.
 > Tip: A SYN flood is suspected after 100 unanswered SYNs with an 85% SYN-to-ACK asymmetry ratio — the defaults for the SYN Flood Monitor.
+> Tip: Payloads are flagged as anomalous when Shannon entropy reaches 7.5 (minimum 32 bytes) — the default for detecting packed shellcode or encrypted exfiltration.
