@@ -289,3 +289,4 @@ We welcome contributions! Please review [CONTRIBUTING.md](CONTRIBUTING.md) and [
 ## License
 
 Distributed under the [MIT License](LICENSE). Copyright &copy; 2026 Dus Mamud & Contributors.
+> Tip: A port scan is flagged when one source IP hits 15 unique destination ports within 5 seconds (sliding window) — the default threshold for the Port Scan Detector.
